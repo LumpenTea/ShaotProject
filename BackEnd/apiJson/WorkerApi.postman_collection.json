@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "1e8dc361-d01c-494e-a74f-11af622adab8",
+		"name": "WorkerApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21491619"
+	},
+	"item": [
+		{
+			"name": "Find Worker By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Find Worker By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/worker/1000",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"worker",
+								"1000"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": 1000,\r\n    \"name\": \"Eduard\",\r\n    \"password\": \"1234\",\r\n    \"companies\": [\r\n        {\r\n            \"id\": 1100,\r\n            \"name\": \"Tempo\"\r\n        }\r\n    ],\r\n    \"shifts\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Worker To Data Base (Not Adding to any Company)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 13,\r\n    \"mail\": \"oded@gmail.com\",\r\n    \"name\": \"Oded\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/worker",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add prefered shifts to Data Base",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "oded@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"dayName\": \"2023-08-27\",\r\n        \"shifts\": [\"07:00:00\", \"15:00:00\", \"23:00:00\"]\r\n    },\r\n    {\r\n        \"dayName\": \"2023-08-28\",\r\n        \"shifts\": [\"07:00:00\", \"15:00:00\", \"23:00:00\"]\r\n    },\r\n    {\r\n        \"dayName\": \"2023-08-29\",\r\n        \"shifts\": [\"07:00:00\", \"15:00:00\", \"23:00:00\"]\r\n    },\r\n    {\r\n        \"dayName\": \"2023-08-30\",\r\n        \"shifts\": [\"07:00:00\", \"15:00:00\", \"23:00:00\"]\r\n    },\r\n    {\r\n        \"dayName\": \"2023-08-31\",\r\n        \"shifts\": [\"07:00:00\", \"15:00:00\", \"23:00:00\"]\r\n    },\r\n    {\r\n        \"dayName\": \"2023-09-01\",\r\n        \"shifts\": [\"07:00:00\", \"15:00:00\", \"23:00:00\"]\r\n    },\r\n    {\r\n        \"dayName\": \"2023-09-02\",\r\n        \"shifts\": [\"07:00:00\", \"15:00:00\", \"23:00:00\"]\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}/prefers/{{companyId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}",
+						"prefers",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get workers weekly schedule",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}/company/{{companyId}}/schedule",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}",
+						"company",
+						"{{companyId}}",
+						"schedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Worker",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jonh NotSmith\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}/messages",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get message by message id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}/messsage/{{messageId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}",
+						"messsage",
+						"{{messageId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Answer Message",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"answer\": true,\r\n    \"reason\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}/answer/{{messageId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}",
+						"answer",
+						"{{messageId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/shaot"
+		}
+	]
+}

@@ -1,0 +1,80 @@
+{
+	"info": {
+		"_postman_id": "24f17a05-0077-47ae-8eab-c9ed5ef26bdc",
+		"name": "Admin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21491619"
+	},
+	"item": [
+		{
+			"name": "Delete Worker From Data Base",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/worker/{{workerId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"worker",
+						"{{workerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Company From Data Base",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Companies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/companies",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all workers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/workers",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"workers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

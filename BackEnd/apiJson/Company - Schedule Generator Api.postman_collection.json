@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "b332089c-fc38-4a8f-835a-f8cae4c19aae",
+		"name": "Company / Schedule Generator Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21491619"
+	},
+	"item": [
+		{
+			"name": "Find Company By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Find Company By Id",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/company/1100",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"company",
+								"1100"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\r\n    \"id\": \"1100\",\r\n    \"name\": \"Tempo\",\r\n    \"workers\": {\r\n        \"5000\": {\r\n            \"id\": 5000,\r\n            \"name\": \"David\",\r\n            \"shiftsCounter\": 0,\r\n            \"priorityByShiftsNumber\": 0\r\n        }\r\n    },\r\n    \"shifts\": []\r\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Company to Data Base",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5000,\r\n    \"name\": \"Tempo G-two\",\r\n    \"mail\": \"tempo@co.il\",\r\n    \"generalWage\": 38.5,\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/company",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Worker to Company (also adding company to worker)",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "tempo@co.il",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "[tempo@co.il, hfl1n31c 3pdn1ux3pm[1u3[ruc[]",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/worker/{{workerId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"worker",
+						"{{workerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Company Schedule for week",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "tempo@co.il",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/schedule",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"schedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ConfigurateSchedule",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "oded@gmail.com",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"weekStart\": \"2023-08-27\",\r\n    \"weekEnd\": \"2023-09-02\",\r\n    \"shiftsTime\": [\r\n        {\r\n            \"start\": \"07:00:00\",\r\n            \"end\": \"15:00:00\"\r\n        },\r\n        {\r\n            \"start\": \"15:00:00\",\r\n            \"end\": \"23:00:00\"\r\n        },\r\n        {\r\n            \"start\": \"23:00:00\",\r\n            \"end\": \"07:00:00\"\r\n        }\r\n    ],\r\n    \"workersNumberPerShift\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/schedule/configure",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"schedule",
+						"configure"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Worker From Company",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "tempo@co.il",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/worker/{{workerId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"worker",
+						"{{workerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Company",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"G-two\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set general wage",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"newWage\": 39.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/wage",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"wage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set individual wage",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"newWage\": 42.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/wage/worker/{{workerId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"wage",
+						"worker",
+						"{{workerId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Send message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"messageId\": 1000,\r\n    \"shiftNeed\": \"2023-08-13T15:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/worker/{{workerId}}/message",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"worker",
+						"{{workerId}}",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Messages",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/messages",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Message by Message ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/message/{{messageId}}",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"message",
+						"{{messageId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get messages by worker Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{cloudUrl}}/company/{{companyId}}/worker/{{workerId}}/messages",
+					"host": [
+						"{{cloudUrl}}"
+					],
+					"path": [
+						"company",
+						"{{companyId}}",
+						"worker",
+						"{{workerId}}",
+						"messages"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/shaot"
+		}
+	]
+}
